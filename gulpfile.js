@@ -31,4 +31,7 @@ gulp.task("concatJs",function(){
     .pipe(uglify())//压缩js
     .pipe(gulp.dest("./src/js/conjs"))
 })
-
+//监听js
+gulp.task("watchJs",function(){
+    return gulp.watch("./src/js/conjs/",gulp.series("concatJs"))
+})
