@@ -1,6 +1,8 @@
 var gulp = require("gulp");
 var sass = require("gulp-sass");//编译scss
 var server = require("gulp-webserver");//启动服务
+var concat = require("gulp-concat")//合并
+
 
 gulp.task("devSass",function(){
     return gulp.src("./src/scss/*.scss")
@@ -14,11 +16,16 @@ gulp.task("watch",function(){
 gulp.task("server",function(){
     return gulp.src("./src")
     .pipe(server({
-        port:9898,
+        port:9896,
         open:true,
         livereload:true,
         middleware:function(req,res,next){
 
         }
     }))
+})
+
+gulp.task("concatJs",function(){
+    return gulp.src(["./src/js/**/*.js","!./src/js/libs/*.js"])
+    .pipe(concat("./src/js/conjs"))
 })
